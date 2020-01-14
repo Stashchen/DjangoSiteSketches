@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="offers">
+    <h1>{{ category_name }}</h1>
+    {% if list_of_products %}
+    {% for product in list_of_products %}
+    <div class="product">
+        {% if product.photo_set.get.photo.url %}
+        <img src="/{{ product.photo_set.get.photo.url }}" alt="{{ product.name }}_photo">
+        {% else %}
+        <img src="/static/images/noImage.png" alt="no_image">
+        {% endif %}
+        <div class="text-of-product">
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.article }}</p>
+            <h2>{{ product.price }} $</h2>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h2>No product on our site. Sorry!</h2>
+    {% endif %}
+</div>
+{% endblock content %}

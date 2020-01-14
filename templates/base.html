@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/64e870c5b6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Inria+Serif&display=swap" rel="stylesheet"> 
+    <title>TEST SITE</title>
+</head>
+<body>
+    <header class="head-name">
+        <a href="{% url 'index' %}"><h1>SITE EXAMPLE</h1></a>
+        <div class="search-bar">
+            <form action="{% url 'search_view' %}" method='GET'>
+                <input type="text" name="q" placeholder="Search..." id="search-bar">
+                <button type="submit" class="btn btn-success" id="search-button">
+                <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </header>
+    
+    <div class='middle-section'>
+        <nav class="nav-bar">
+            <ul>
+                <a href="{% url 'index' %}"><li>Home</li></a>
+                {% for category in list_of_categories %}
+                <a href="/catalog/{{ category.name }}/"><li>{{ category.name }}</li></a>
+                {% endfor %}
+            </ul>
+        </nav>
+        
+        <div class="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </div>
+
+    <footer>
+        <h3>Contact information:</h3>
+        <p>stashchen@gmail.com</p>
+        <p>+375447677691</p>
+        <p><i class="fab fa-instagram"></i><a href="https://www.instagram.com/stashchen/">stashchen</a></p>
+    </footer>
+</body>
+
+</html>
